@@ -9,5 +9,6 @@ game_count =  cur.fetchone()[0]
 cur.execute("SELECT COUNT(name) FROM games WHERE played_2018 = True;")
 played_count = cur.fetchone()[0]
 
-print game_count
-print played_count
+progress = float(played_count)/game_count
+
+print(round(progress, 3))
