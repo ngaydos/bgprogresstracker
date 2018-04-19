@@ -9,4 +9,5 @@ if calendar.isleap(current_year):
 else:
     year_progress = days_passed/365
 
-print year_progress
+if __name__ == '__main__':
+    print year_progress

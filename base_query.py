@@ -11,4 +11,5 @@ played_count = cur.fetchone()[0]
 
 progress = float(played_count)/game_count
 
-print(round(progress, 3))
+if __name__ == '__main__':
+    print(round(progress, 3))
