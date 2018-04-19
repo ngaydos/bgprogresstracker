@@ -10,4 +10,4 @@ else:
     year_progress = days_passed/365
 
 if __name__ == '__main__':
-    print year_progress
+    print(year_progress)
