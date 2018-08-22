@@ -1,8 +1,12 @@
-<html>
-    <head>
-        <title>Nick's Game Collection - {{ title }} </title>
-    </head>
-    <body>
-        <h1>Hello, {{ user.username }}!</h1>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ user.username }}!</h1>
+    {% if posts %}
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+    {% else %}
+    <div><p>This is Nick's Board Game Collection</div>
+    {% endif %}
+{% endblock %}

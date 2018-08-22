@@ -1,0 +1,18 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Nick's Game Collection</title>
+      {% else %}
+      <title>Welcome to Nick's Board Game Collection</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>
+          NBGC: 
+          <a href="/index">Home</a>
+          <a href="/collection">Collection</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
