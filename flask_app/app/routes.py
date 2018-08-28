@@ -44,8 +44,9 @@ def game(gamename):
 @app.route('/review', methods = ['GET', 'POST'])
 def review():
     form = ReviewForm()
-    if request.method == 'POST' and form.validate_on_submit():
+    if request.method == 'POST':
         insert_rating(form.game.data, form.person.data, form.rating.data)
-        flash(('Rating of {} inserted for game {} for {}').format(form.rating.data, form.game.data, form.rating.data))
+        flash(('Rating of {} inserted for game {} for {}').format(form.rating.data, form.game.data, form.person.data))
+        return redirect('review')
     elif request.method == 'GET':
         return render_template('review.html', title = 'Game Rating Update', form = form)

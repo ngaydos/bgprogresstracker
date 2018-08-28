@@ -1,6 +1,6 @@
 import psycopg2
 from flask_wtf import FlaskForm
-from wtforms import TextField, IntegerField, TextAreaField, SubmitField, RadioField, SelectField
+from wtforms import TextField, IntegerField, TextAreaField, SubmitField, RadioField, SelectField, FloatField
 
 
 class GameForm(FlaskForm):
@@ -20,5 +20,5 @@ class ReviewForm(FlaskForm):
     people = [(item[1], item[1]) for item in cur.fetchall()]
     person = SelectField('Person', choices = people)
     game = SelectField('Game', choices = games)
-    rating = IntegerField('Rating')
+    rating = FloatField('Rating')
     submit = SubmitField('Submit')
