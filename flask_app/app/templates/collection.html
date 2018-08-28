@@ -2,19 +2,7 @@
 
 {% block content %}
     <h1>Current Board Game Collection Info</h1>
-    {% for game in games %}
-    <li>{{ game }}</li>
-    {% endfor %}
-    <h1>Select by Game</h1>
-<!--   <form action ='/gamesearch'>
-        <select name ='game_name' id = 'game_name'>
-            {% for game in games %}
-            <option value ={{game}} name = {{game}}>{{ game }}</option>
-            {% endfor %}
-        </select>
-        <input type='submit'>
-    </form>
--->
+    <h3>Select by Game</h3>
     <form action = '' method = 'post' name=gamelist id=gamelist novalidate>
         {{form.hidden_tag()}}
 
@@ -26,4 +14,19 @@
             {{ form.submit }}
         </div>
 
+
+
+    {% for game in games %}
+    <li>{{ game }}</li>
+    {% endfor %}
+
 {% endblock %}
+<!--   <form action ='/gamesearch'>
+        <select name ='game_name' id = 'game_name'>
+            {% for game in games %}
+            <option value ={{game}} name = {{game}}>{{ game }}</option>
+            {% endfor %}
+        </select>
+        <input type='submit'>
+    </form>
+-->
