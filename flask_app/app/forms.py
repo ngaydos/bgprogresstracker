@@ -17,7 +17,7 @@ class ReviewForm(FlaskForm):
     cur.execute('SELECT * FROM games ORDER BY name')
     games = [(item[0], item[0]) for item in cur.fetchall()]
     cur.execute('SELECT * FROM people_index ORDER BY name')
-    people = [(item[0], item[0]) for item in cur.fetchall()]
+    people = [(item[1], item[1]) for item in cur.fetchall()]
     person = SelectField('Person', choices = people)
     game = SelectField('Game', choices = games)
     rating = IntegerField('Rating')
