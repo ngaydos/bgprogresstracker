@@ -6,9 +6,10 @@
     <li>{{ game }}</li>
     {% endfor %}
     <h1>Select by Game</h1>
-    <select name ='games'>
+    <select name ='game-name' form = 'gamesubmit'>
         {% for game in games %}
         <option value =game>{{ game }}</option>
         {% endfor %}
     </select>
+    <input type ='submit'
 {% endblock %}
