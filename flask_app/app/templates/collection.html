@@ -5,4 +5,10 @@
     {% for game in games %}
     <li>{{ game }}</li>
     {% endfor %}
+    <h1>Select by Game</h1>
+    <select name ='games'>
+        {% for game in games %}
+        <option value =game>{{ game }}</option>
+        {% endfor %}
+    </select>
 {% endblock %}
