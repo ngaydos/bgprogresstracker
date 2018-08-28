@@ -48,4 +48,4 @@ def review():
         insert_rating(form.game.data, form.person.data, form.rating.data)
         flash(('Rating of {} inserted for game {} for {}').format(form.rating.data, form.game.data, form.rating.data))
     elif request.method == 'GET':
-        return render_template('review.html', title = 'Game Rating Update' form = form)
+        return render_template('review.html', title = 'Game Rating Update', form = form)
