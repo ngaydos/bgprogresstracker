@@ -6,10 +6,24 @@
     <li>{{ game }}</li>
     {% endfor %}
     <h1>Select by Game</h1>
-    <select name ='game-name' form = 'gamesubmit'>
-        {% for game in games %}
-        <option value =game>{{ game }}</option>
-        {% endfor %}
-    </select>
-    <input type ='submit'
+<!--   <form action ='/gamesearch'>
+        <select name ='game_name' id = 'game_name'>
+            {% for game in games %}
+            <option value ={{game}} name = {{game}}>{{ game }}</option>
+            {% endfor %}
+        </select>
+        <input type='submit'>
+    </form>
+-->
+    <form action = '' method = 'post' name=gamelist id=gamelist novalidate>
+        {{form.hidden_tag()}}
+
+        <div>
+            {{ form.game_select.label }}
+            <br>
+            {{ form.game_select }}
+            <br>
+            {{ form.submit }}
+        </div>
+
 {% endblock %}
