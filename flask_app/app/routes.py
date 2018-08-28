@@ -1,5 +1,5 @@
 from flask import render_template, redirect, request, flash
-from app.forms import GameForm, ReviewForm
+from app.forms import GameForm, ReviewForm, PlayerCountForm
 from app import app
 import psycopg2
 from app.misc.sqlmod import insert_rating, update_rating
@@ -7,26 +7,30 @@ from app.misc.sqlmod import insert_rating, update_rating
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'Nick'}
-    posts = [
-        {'author': {'username': 'Vadim'},
-        'body': 'I sure hate seven wonders'
-        }
-    ]
-    return render_template('index.html', title = 'Index', user = user)
+    conn = psycopg2.connect('dbname = boardgames user = postgres')
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(name) FROM games;")
+    game_count =  cur.fetchone()[0]
+    cur.execute("SELECT COUNT(name) FROM games WHERE played_2018 = True;")
+    played_count = cur.fetchone()[0]
+    played_rate = float(played_count)/game_count
+    return render_template('index.html', title = 'Home', game_count = game_count, played_count = played_count, played_rate = round(played_rate, 3 ))
 
 @app.route('/collection', methods = ['GET', 'POST'])
 def collection():
-    form = GameForm()
+    gameform = GameForm()
     if request.method == 'POST':
-        return redirect('/game/{}'.format(form.game_select.data)) 
+        if gameform.game_select.data != 'None':
+            return redirect('/game/{}'.format(gameform.game_select.data))
+        else:
+            return redirect('/collection')
     elif request.method == 'GET':
         conn = psycopg2.connect('dbname = boardgames user = postgres')
         cur = conn.cursor()
         cur.execute('SELECT * FROM games')
         games = [item[0] for item in cur.fetchall()]
 
-        return render_template('collection.html', title = 'Collection', games = games, form = form)
+        return render_template('collection.html', title = 'Collection', games = games, gameform = gameform)
 
 @app.route('/game/<gamename>')
 def game(gamename):

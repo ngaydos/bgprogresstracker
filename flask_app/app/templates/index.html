@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
-    {% if posts %}
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
-    {% else %}
-    <div><p>This is Nick's Board Game Collection</div>
-    {% endif %}
+    <h1>Nick's Game Collection - Front Page</h1>
+    <br>
+    <h3>Games in the Collection: {{ game_count }}</h3>
+    <br>
+    <h3>Games Played in 2018: {{ played_count }}</h3>
+    <br>
+    <h3>Completion Rate of Game Collection: {{ played_rate }}
 {% endblock %}

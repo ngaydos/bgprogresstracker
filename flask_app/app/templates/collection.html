@@ -4,21 +4,14 @@
     <h1>Current Board Game Collection Info</h1>
     <h3>Select by Game</h3>
     <form action = '' method = 'post' name=gamelist id=gamelist novalidate>
-        {{form.hidden_tag()}}
+        {{gameform.hidden_tag()}}
 
         <div>
-            {{ form.game_select.label }}
+            {{ gameform.game_select.label }}
             <br>
-            {{ form.game_select }}
-            <br>
-            {{ form.submit }}
+            {{ gameform.game_select }}
+            {{ gameform.submit }}
         </div>
-
-
-
-    {% for game in games %}
-    <li>{{ game }}</li>
-    {% endfor %}
 
 {% endblock %}
 <!--   <form action ='/gamesearch'>
