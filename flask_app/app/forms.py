@@ -21,3 +21,4 @@ class ReviewForm(FlaskForm):
     person = SelectField('Person', choices = people)
     game = SelectField('Game', choices = games)
     rating = IntegerField('Rating')
+    submit = SubmitField('Submit')
