@@ -19,6 +19,7 @@ def index():
 @app.route('/collection', methods = ['GET', 'POST'])
 def collection():
     gameform = GameForm()
+    playerform = PlayerCountForm()
     if request.method == 'POST':
         if gameform.game_select.data != 'None':
             return redirect('/game/{}'.format(gameform.game_select.data))
@@ -30,7 +31,7 @@ def collection():
         cur.execute('SELECT * FROM games')
         games = [item[0] for item in cur.fetchall()]
 
-        return render_template('collection.html', title = 'Collection', games = games, gameform = gameform)
+        return render_template('collection.html', title = 'Collection', games = games, gameform = gameform, playerform= playerform)
 
 @app.route('/game/<gamename>')
 def game(gamename):

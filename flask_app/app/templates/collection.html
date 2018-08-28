@@ -11,7 +11,22 @@
             <br>
             {{ gameform.game_select }}
             {{ gameform.submit }}
+            <br>
         </div>
+        <br><br>
+    <h3>Search by Player Count<h3>
+    <form action = '' method = 'post' name=playerform id=playerform novalidate>
+        {{playerform.hidden_tag()}}
+        <div>
+            {{playerform.player_count.label}}
+            {{playerform.player_count}}
+            <br><br>
+            {{playerform.must_be_new.label}}
+            {{playerform.must_be_new}}
+            <br>
+            {{playerform.submit}}
+        </div>
+
 
 {% endblock %}
 <!--   <form action ='/gamesearch'>
