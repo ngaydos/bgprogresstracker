@@ -2,6 +2,7 @@ from flask import render_template, redirect, request
 from app.forms import GameForm
 from app import app
 import psycopg2
+from app.misc.sqlmod import insert_rating
 
 @app.route('/')
 @app.route('/index')
@@ -40,7 +41,8 @@ def game(gamename):
         min_players = gameinfo[1], max_players = gameinfo[2], best_count = gameinfo[3],
          type = gameinfo[4], duration= gameinfo[5], played_2018 = gameinfo[6])
 
-@app.route('/gamesearch', methods = ['GET', 'POST'])
-def gamesearch():
-    game = request.form.get('gamelist.gameselect.data')
-    return redirect(('/game/{}').format(game))
+@app.route('/review', methods = ['GET', 'POST'])
+def review():
+    if request.method == 'POST':
+        conn = psycopg2.connect('dbname = boardgames user = postgres')
+        cur = conn.cursor
