@@ -1,8 +1,8 @@
-from flask import render_template, redirect, request
-from app.forms import GameForm
+from flask import render_template, redirect, request, flash
+from app.forms import GameForm, ReviewForm
 from app import app
 import psycopg2
-from app.misc.sqlmod import insert_rating
+from app.misc.sqlmod import insert_rating, update_rating
 
 @app.route('/')
 @app.route('/index')
@@ -43,6 +43,9 @@ def game(gamename):
 
 @app.route('/review', methods = ['GET', 'POST'])
 def review():
-    if request.method == 'POST':
-        conn = psycopg2.connect('dbname = boardgames user = postgres')
-        cur = conn.cursor
+    form = ReviewForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        insert_rating(form.game.data, form.person.data, form.rating.data)
+        flash(('Rating of {} inserted for game {} for {}').format(form.rating.data, form.game.data, form.rating.data))
+    elif request.method == 'GET':
+        return render_template('review.html', title = 'Game Rating Update' form = form)
