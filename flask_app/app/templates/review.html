@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Submit a Review</h1>
+        <form action = '' method = 'post' name=reviewform id=reviewform>
+            {{ form.hidden_tag() }}
+
+            <div>
+                {{form.person.label}}
+                <br>
+                {{form.person}}
+                <br><br>
+                {{form.game.label}}
+                <br>
+                {{form.game}}
+                <br><br>
+                {{form.game.label}}
+                <br>
+                {{form.game}}
+            </div>
+            
+{% endblock %}
