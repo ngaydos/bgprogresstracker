@@ -1,0 +1,15 @@
+{% extends base.html %}
+
+{% block content %}
+    <h1> Game Information: {{ name }}</h1>
+    <ul>
+        {% if type %}
+        <li>Genre: {{ type }}</li>
+        {% endif %}
+        <li>Minimum Players: {{ min_players }}</li>
+        <li>Maximum Players: {{ max_players }}</li>
+        <li>Best Player Count: {{ best_count }}</li>
+        <li>Game Duration: {{ duration }}</li>
+        <li>Docket Status (Played 2018?): {{ played_2018 }}</li>
+    </ul>
+{% endblock %}
