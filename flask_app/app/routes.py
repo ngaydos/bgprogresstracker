@@ -55,3 +55,16 @@ def review():
         return redirect('review')
     elif request.method == 'GET':
         return render_template('review.html', title = 'Game Rating Update', form = form)
+
+@app.route('/search')
+def search(player_count, played_bool):
+    conn = psycopg2.connect('dbname = boardgames user = postgres')
+    cur = conn.cursor()
+    if played_bool == 'y':
+        cur.execute(("SELECT name FROM games WHERE played_2018 = 'False' AND min_players <={} AND max_players >= {}").format
+            (player_count, player_count))
+    else:
+        cur.execute(("SELECT name FROM games WHERE min_players <={} AND max_players >= {}").format
+            (player_count, player_count))
+    gamelist = [item[0] for item in cur.fetchall()]
+    return render_template('search.html', title = 'Search Results', gamelist = gamelist)
