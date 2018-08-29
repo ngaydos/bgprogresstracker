@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <ul>
+        {% if gamelist %}
+        {% for game in gamelist %}
+        <li>game</li>
+        {% endfor %}
+        {% else %}
+        <li>No games found</li>
+        {% endif %}
+    </ul>
+{% endblock %}
