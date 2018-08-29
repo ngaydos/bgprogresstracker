@@ -23,6 +23,8 @@ def collection():
     if request.method == 'POST':
         if gameform.game_select.data != 'None':
             return redirect('/game/{}'.format(gameform.game_select.data))
+        elif playerform.submit.data:
+            return search(playerform.player_count.data, playerform.must_be_new.data)
         else:
             return redirect('/collection')
     elif request.method == 'GET':
