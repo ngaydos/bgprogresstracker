@@ -21,9 +21,9 @@ def collection():
     gameform = GameForm()
     playerform = PlayerCountForm()
     if request.method == 'POST':
-        if gameform.game_select.data != 'None':
+        if gameform.submit.data:
             return redirect('/game/{}'.format(gameform.game_select.data))
-        elif playerform.submit.data:
+        elif playerform.submit.data and playerform.validate():
             return search(playerform.player_count.data, playerform.must_be_new.data)
         else:
             return redirect('/collection')
