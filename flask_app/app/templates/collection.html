@@ -22,6 +22,7 @@
             {{playerform.player_count.label}}
             {{playerform.player_count}}
             {% for error in playerform.player_count.errors %}
+            <br>
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
             <br><br>
