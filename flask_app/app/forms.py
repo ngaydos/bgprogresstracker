@@ -1,6 +1,7 @@
 import psycopg2
 from flask_wtf import FlaskForm
 from wtforms import TextField, IntegerField, TextAreaField, SubmitField, RadioField, SelectField, FloatField
+from wtforms.validators import DataRequired
 
 
 class GameForm(FlaskForm):
@@ -24,6 +25,6 @@ class ReviewForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class PlayerCountForm(FlaskForm):
-    player_count = IntegerField('Player Count')
-    must_be_new = RadioField('Only Select Unplayed 2018?', choices = [('y', 'Yes'), ('n', 'No')])
+    player_count = IntegerField('Player Count', validators = [DataRequired()])
+    must_be_new = RadioField('Only Select Unplayed 2018?', choices = [('y', 'Yes'), ('n', 'No')], validators = [DataRequired()])
     submit = SubmitField('Search')
