@@ -18,11 +18,18 @@
     <form action = '' method = 'post' name=playerform id=playerform novalidate>
         {{playerform.hidden_tag()}}
         <div>
+
             {{playerform.player_count.label}}
             {{playerform.player_count}}
+            {% for error in playerform.player_count.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
             <br><br>
             {{playerform.must_be_new.label}}
             {{playerform.must_be_new}}
+            {% for error in playerform.must_be_new.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
             <br>
             {{playerform.submit}}
         </div>

@@ -20,6 +20,10 @@ def index():
 def collection():
     gameform = GameForm()
     playerform = PlayerCountForm()
+    conn = psycopg2.connect('dbname = boardgames user = postgres')
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM games')
+    games = [item[0] for item in cur.fetchall()]
     if request.method == 'POST':
         if gameform.game_select.data != 'None':
             return redirect('/game/{}'.format(gameform.game_select.data))
@@ -27,14 +31,11 @@ def collection():
             if playerform.validate_on_submit():
                 return search(playerform.player_count.data, playerform.must_be_new.data)
             else:
-                return redirect('/index')
+                return render_template('/collection', title = 'Collection', games = games, gameform = gameform, playerform = playerform)
         else:
             return redirect('/collection')
     elif request.method == 'GET':
-        conn = psycopg2.connect('dbname = boardgames user = postgres')
-        cur = conn.cursor()
-        cur.execute('SELECT * FROM games')
-        games = [item[0] for item in cur.fetchall()]
+
 
         return render_template('collection.html', title = 'Collection', games = games, gameform = gameform, playerform= playerform)
 
