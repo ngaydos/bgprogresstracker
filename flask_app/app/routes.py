@@ -33,10 +33,8 @@ def collection():
             else:
                 return render_template('/collection.html', title = 'Collection', games = games, gameform = gameform, playerform = playerform)
         else:
-            return redirect('/collection')
+            return render_template('collection.html', title = 'Collection', games = games, gameform = gameform, playerform= playerform)
     elif request.method == 'GET':
-
-
         return render_template('collection.html', title = 'Collection', games = games, gameform = gameform, playerform= playerform)
 
 @app.route('/game/<gamename>')
