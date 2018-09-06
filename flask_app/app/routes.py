@@ -72,3 +72,7 @@ def search(player_count, played_bool):
             (player_count, player_count))
     gamelist = [item[0] for item in cur.fetchall()]
     return render_template('search.html', title = 'Search Results', gamelist = gamelist)
+
+@app.route('/newgame')
+def newgame():
+    form = NewGameForm()
