@@ -30,4 +30,8 @@ class PlayerCountForm(FlaskForm):
     submit = SubmitField('Search')
 
 class NewGameForm(FlaskForm):
-    game_name = TextField()
+    game_name = StringField('Game Name', validators = [DataRequired()])
+    min_players = IntegerField('Minimum Players', validators = [DataRequired()])
+    max_players = IntegerField('Maximum Players', validators = [DataRequired()])
+    best_count = IntegerField('Best Player Count')
+    
