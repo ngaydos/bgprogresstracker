@@ -73,6 +73,18 @@ def search(player_count, played_bool):
     gamelist = [item[0] for item in cur.fetchall()]
     return render_template('search.html', title = 'Search Results', gamelist = gamelist)
 
-@app.route('/newgame')
+@app.route('/newgame', methods = ['GET', 'POST'])
 def newgame():
+    conn = psycopg2.connect('dbname = boardgames user = postgres')
+    cur = conn.cursor()
     form = NewGameForm()
+    if request.method = 'POST':
+        cur.execute(("INSERT INTO games(name, min_players, max_players, duration, played_2018) VALUES({}, {}, {}, {}, {})").format
+            (form.game_name.data, form.min_players.data, form.max_players.data, form.duration.data, form.played_2018.data))
+        if form.best_count != 'None':
+            cur.execute(("UPDATE games SET best_count = {} WHERE name = {}").format(form.best_count.data, form.game_name.data))
+        if form.genre != 'None':
+            cur.execute(("UPDATE games SET genre = {} WHERE name = {}").format(form.genre.data, form.game_name.data))
+        conn.commit()
+        conn.close()
+    return render_template('newgame.html', title = 'New Game Information', form = form)
