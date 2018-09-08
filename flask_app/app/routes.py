@@ -93,4 +93,5 @@ def newgame():
             cur.execute(("UPDATE games SET genre = {} WHERE name = '{}'").format(form.genre_name.data, form.game_name.data))
         conn.commit()
         conn.close()
+        return redirect('newgame')
     return render_template('newgame.html', title = 'New Game Information', form = form)
