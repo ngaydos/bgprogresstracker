@@ -36,5 +36,5 @@ class NewGameForm(FlaskForm):
     best_count = IntegerField('Best Player Count')
     genre_name = StringField('Game Genre')
     duration = IntegerField('Game Duration', validators = [DataRequired()])
-    played_2018 = RadioField('Has this been played in 2018?', choices = [('y', 'Yes'), ('n', 'No')], validators = [DataRequired()])
+    played_2018 = RadioField('Has this been played in 2018?', choices = [(True, 'Yes'), (False, 'No')], validators = [DataRequired()])
     submit = SubmitField('Submit')
