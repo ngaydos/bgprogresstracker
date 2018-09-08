@@ -3,10 +3,14 @@ from app.forms import GameForm, ReviewForm, PlayerCountForm
 from app import app
 import psycopg2
 from app.misc.sqlmod import insert_rating, update_rating
+#general imports
+
 
 @app.route('/')
 @app.route('/index')
+#defines index by both the base page and the index
 def index():
+    #connects to database to gain basic information for front page
     conn = psycopg2.connect('dbname = boardgames user = postgres')
     cur = conn.cursor()
     cur.execute("SELECT COUNT(name) FROM games;")
@@ -17,7 +21,9 @@ def index():
     return render_template('index.html', title = 'Home', game_count = game_count, played_count = played_count, played_rate = round(played_rate, 3 ))
 
 @app.route('/collection', methods = ['GET', 'POST'])
+#sets up collection page
 def collection():
+    #uses two independent forms depending on which form the user is submitting
     gameform = GameForm()
     playerform = PlayerCountForm()
     conn = psycopg2.connect('dbname = boardgames user = postgres')
