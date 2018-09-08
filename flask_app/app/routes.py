@@ -1,5 +1,5 @@
 from flask import render_template, redirect, request, flash
-from app.forms import GameForm, ReviewForm, PlayerCountForm
+from app.forms import GameForm, ReviewForm, PlayerCountForm, NewGameForm
 from app import app
 import psycopg2
 from app.misc.sqlmod import insert_rating, update_rating
