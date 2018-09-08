@@ -90,7 +90,7 @@ def newgame():
         if form.best_count.data:
             cur.execute(("UPDATE games SET best_count = {} WHERE name = '{}'").format(form.best_count.data, form.game_name.data))
         if form.genre_name.data != None and form.genre_name.data != '' and form.genre_name.data != []:
-            cur.execute(("UPDATE games SET genre = {} WHERE name = '{}'").format(form.genre_name.data, form.game_name.data))
+            cur.execute(("UPDATE games SET type = '{}' WHERE name = '{}'").format(form.genre_name.data, form.game_name.data))
         conn.commit()
         conn.close()
         return redirect('newgame')
