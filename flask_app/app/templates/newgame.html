@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Insert a New Game</h1>
+        <form action = '' method = 'post' name=newgameform id =newgameform>
+            {{ form.hidden_tag() }}
+
+            <div>
+                {{ form.game_name.label }} &ensp;
+                {{ form.game_name}}
+                <br>
+                {{ form.min_players.label }} &ensp;
+                {{ form.min_players }}
+                <br>
+                {{ form.max_players.label }} &ensp;
+                {{ form.max_players }}
+                <br>
+                {{ form.best_count.label }} &ensp;
+                {{ form.best_count }}
+                <br>
+                {{ form.genre_name.label }} &ensp;
+                {{ form.genre_name }}
+                <br>
+                {{ form.duration.label }} &ensp;
+                {{ form.duration }}
+                <br>
+                {{ form.played_2018.label }} &ensp;
+                {{ form.played_2018 }}
+                <br>
+                {{ form.submit }}
+            </div>
+
+{% endblock %}
